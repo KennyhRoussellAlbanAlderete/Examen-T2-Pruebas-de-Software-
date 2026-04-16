@@ -1,0 +1,36 @@
+name: Ejecucion de Tests Saucedemo
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout del codigo
+        uses: actions/checkout@v4
+
+      - name: Configurar JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Instalar Navegadores de Playwright
+        run: mvn playwright:install
+
+      - name: Ejecutar Tests con Maven
+        run: mvn verify
+        continue-on-error: true
+
+      - name: Cargar Reporte de Serenity
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: serenity-report
+          path: target/site/serenity

@@ -9,7 +9,7 @@ public class AgregarAlCarrito {
 
     public static Performable elProducto(String productName)
     {
-        return Task.where("{0}agrega" +productName + "al carrito",Click.on(CarritoPage.btnAddToCart(productName)));
+        return Task.where("{0} agrega el producto " + productName,Click.on(CarritoPage.btnAddToCart(productName)));
 
     }
 }

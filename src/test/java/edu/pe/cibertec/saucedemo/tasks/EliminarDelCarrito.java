@@ -9,7 +9,7 @@ public class EliminarDelCarrito {
 
     public static Performable elProducto(String productName)
     {
-        return Task.where("{0}elimina"+productName+"del carrito",Click.on(CarritoPage.btnRemoveFromCart(productName)));
+        return Task.where("{0} elimina el producto " + productName,Click.on(CarritoPage.btnRemoveFromCart(productName)));
 
     }
 }
