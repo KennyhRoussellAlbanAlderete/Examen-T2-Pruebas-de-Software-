@@ -21,11 +21,10 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Instalar Navegadores de Playwright
-        run: mvn exec:java -e -Dexec.mainClass=com.microsoft.playwright.CLI -Dexec.args="install"
-
       - name: Ejecutar Tests con Maven
         run: mvn verify
+        env:
+          HEADLESS: true
         continue-on-error: true
 
       - name: Cargar Reporte de Serenity
