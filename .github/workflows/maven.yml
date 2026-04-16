@@ -22,7 +22,7 @@ jobs:
           cache: maven
 
       - name: Instalar Navegadores de Playwright
-        run: mvn playwright:install
+        run: mvn exec:java -e -Dexec.mainClass=com.microsoft.playwright.CLI -Dexec.args="install"
 
       - name: Ejecutar Tests con Maven
         run: mvn verify
